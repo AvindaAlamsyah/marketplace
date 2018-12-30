@@ -1107,7 +1107,7 @@ li.sale-noti > a {
 
 .side-menu .sub-menu > li {
   padding-left: 12px;
-  padding-top: 
+  padding-top: none;
 }
 
 .side-menu .sub-menu a:hover {
@@ -1661,12 +1661,12 @@ li.sale-noti > a {
 
 .block2-labelsale::before {
   background-color: #e65540;
-  content: 'Sale';
+  content: 'Jual';
 }
 
 .block2-labelnew::before {
   background-color: #66a8a6;
-  content: 'New';
+  content: 'Beli';
 }
 
 /* ------------------------------------ */
