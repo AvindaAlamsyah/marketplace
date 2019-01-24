@@ -80,11 +80,11 @@
 					<nav class="menu">
 						<ul class="main_menu">
 							<li>
-								<a href="index.html">Beranda</a>
+								<a href="<?php echo base_url('Beranda'); ?>">Beranda</a>
 							</li>
 
 							<li>
-								<a href="product.html">Pasar Online</a>
+								<a href="<?php echo base_url('Pasar'); ?>">Pasar Online</a>
 							</li>
 						</ul>
 					</nav>
@@ -120,7 +120,13 @@
 					<span class="linedivide1"></span>
 
 					<div class="header-wrapicon2">
-						<a href="">Masuk</a>
+					<?php
+						if ($this->session->userdata('id') !== NULL) {
+							echo "Halo, ".$this->session->userdata('nama');
+						} else {
+							echo "<a href=".base_url("Masuk").">Masuk</a> / <a href=".base_url("Daftar").">Daftar</a>";
+						}
+					?>
 					</div>
 				</div>
 			</div>
@@ -165,7 +171,13 @@
 					<span class="linedivide1"></span>
 
 					<div class="header-wrapicon2">
-						<a href="">Masuk</a>
+					<?php
+						if ($this->session->userdata('id') !== NULL) {
+							echo "Halo, ".$this->session->userdata('nama');
+						} else {
+							echo "<a href=".base_url("Masuk").">Masuk</a> / <a href=".base_url("Daftar").">Daftar</a>";
+						}
+					?>
 					</div>
 				</div>
 
@@ -181,44 +193,12 @@
 		<div class="wrap-side-menu" >
 			<nav class="side-menu">
 				<ul class="main-menu">
-					<!--
-					<li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
-						<span class="topbar-child1">
-							Free shipping for standard order over $100
-						</span>
-					</li>
-
-					<li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
-						<div class="topbar-child2-mobile">
-							<span class="topbar-email">
-								fashe@example.com
-							</span>
-
-							<div class="topbar-language rs1-select2">
-								<select class="selection-1" name="time">
-									<option>USD</option>
-									<option>EUR</option>
-								</select>
-							</div>
-						</div>
-					</li>
-
-					<li class="item-topbar-mobile p-l-10">
-						<div class="topbar-social-mobile">
-							<a href="#" class="topbar-social-item fa fa-facebook"></a>
-							<a href="#" class="topbar-social-item fa fa-instagram"></a>
-							<a href="#" class="topbar-social-item fa fa-pinterest-p"></a>
-							<a href="#" class="topbar-social-item fa fa-snapchat-ghost"></a>
-							<a href="#" class="topbar-social-item fa fa-youtube-play"></a>
-						</div>
-					</li>
-					-->
 					<li class="item-menu-mobile">
-						<a href="index.html">Beranda</a>
+						<a href="<?php echo base_url('Beranda'); ?>">Beranda</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="product.html">Pasar Online</a>
+						<a href="<?php echo base_url('Pasar'); ?>">Pasar Online</a>
 					</li>
 				</ul>
 			</nav>
@@ -316,7 +296,7 @@
 					</h4>
 
 					<span class="s-text11 t-center">
-						deskripsi singkatnya dampak terhapat peternak
+						deskripsi singkatnya dampak terhadap peternak
 					</span>
 				</div>
 
@@ -331,7 +311,7 @@
 				</div>
 
 				<div class="flex-col-c w-size5 p-l-15 p-r-15 p-t-16 p-b-15 respon2">
-					<button class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
+					<button class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4" onclick="location.href='<?php echo base_url('Pasar'); ?>'" >
 						Masuk Pasar Online
 					</button>
 				</div>
@@ -493,6 +473,10 @@
 				swal(nameProduct, "is added to wishlist !", "success");
 			});
 		});
+		$('#beranda').on('click',function(){
+			swal("test","berhasil","error");
+		});
+
 	</script>
 
 <!--===============================================================================================-->
