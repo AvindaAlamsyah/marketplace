@@ -24,6 +24,21 @@ class Pasar extends CI_Controller
         $this->load->view('ViewBeli');
     }
 
+    public function riwPost()
+    {
+        $query = array(
+            'jual' => "",
+            'beli' => ""
+        );
+
+        $id = $this->input->post('id');
+
+        $query['jual'] = $this->ModelPasar->jumlahPost('jual',$id);
+        $query['beli'] = $this->ModelPasar->jumlahPost('beli',$id);
+
+        echo json_encode($query);
+    }
+
     public function simpanJual()
     {
         $pesan = array(

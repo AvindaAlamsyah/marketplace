@@ -208,11 +208,11 @@
                         <div>
 							<div id="dataPelapak"></div>
 							<br>
-							<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+							<button id="btn-jual" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
 								Ingin Jual
 							</button>
 							<br>
-							<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+							<button id="btn-beli" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
 								Ingin Beli
 							</button>
 							<br>
@@ -577,11 +577,54 @@
 	<script type="text/javascript" src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-
+			var id = 0;
+			var cek = "<?php echo $this->session->userdata('id'); ?>";
+			if (cek == "") {
+				id = 0;
+			} else {
+				id = cek;
+			}
+			ambilDataPelapak(id);
 		});
 
-		function ambilDataPelapak() {
-			$('')
+		function ambilDataPelapak(id) {
+			if (id !== 0) {
+				$.ajax({
+					url: "<?php echo base_url('Pasar/riwPost'); ?>",
+					type: "POST",
+					dataType: "JSON",
+					data: {id: id},
+					success: function(query){
+						var tag =
+							'<br>'+
+							'<h5 class="t-center"><?php echo $this->session->userdata("nama"); ?></h5>'+
+							'<br>'+
+							'<h6>Riwayat :</h6>'+
+							'<p>'+query.jual+' Posting Jual'+'</p>'+
+							'<p>'+query.beli+' Posting Beli'+'</p>'+
+							'<br>'+
+							'<button id="btn-riw-post" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">'+
+								'Berandaku'+
+							'</button>';
+
+						$('#dataPelapak').html(tag);
+					}
+				});
+
+				
+
+				$('#btn-jual').click(function(){
+					window.location = "<?php echo base_url('Pasar/jual'); ?>";
+				});
+
+				$('#btn-beli').click(function(){
+					window.location = "<?php echo base_url('Pasar/beli'); ?>";
+				});
+			} else {
+				$('#btn-jual, #btn-beli').click(function(){
+					swal("Duh...", "Anda belum masuk, silahkan masuk telebih dahulu", "info");
+				});
+			}
 		}
 	</script>
 <!--===============================================================================================-->

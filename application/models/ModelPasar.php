@@ -12,6 +12,16 @@ class ModelPasar extends CI_Model
         return TRUE;
     }
 
+    function jumlahPost($tabel,$id)
+    {
+        $this->db->select('*');
+        $this->db->from($tabel);
+        $this->db->where('user_idUser', $id);
+        $query = $this->db->get()->num_rows();
+
+        return $query;
+    }
+
     function _uploadGambar()
     {
         $config['upload_path']      = './upload/';
